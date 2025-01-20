@@ -116,6 +116,42 @@ void InsertAtPosition(Node*& head, Node*& tail, int position, int d) {
     nodeToInsert->next = temp->next;
     temp->next = nodeToInsert;
 }
+/////
+Node* middleElement(Node* &head){
+
+    if(head==NULL)
+    {
+        return head;
+    }
+
+    if (head->next==NULL)
+    {
+        return head;
+    }
+
+    //if the LL contains only 2 nodes
+    if(head->next->next == NULL)
+    {
+        return head->next;
+    }
+    
+
+    Node* slow = head;
+    Node* fast = head->next;
+
+    while(fast!=NULL){
+
+        fast=fast->next;
+        if(fast!=NULL)
+        {
+            fast = fast->next;
+        }
+        slow = slow->next;
+    }
+
+    return slow;
+
+}
 
 // Print the linked list
 void print(Node* &head) {
@@ -151,15 +187,20 @@ int main() {
     InsertAtPosition(head, tail, 1, 100);
     print(head);
 
-    cout<< "Head " << head->data <<endl; 
-    cout<< "Tail " << tail->data <<endl; 
+    // cout<< "Head " << head->data <<endl; 
+    // cout<< "Tail " << tail->data <<endl; 
 
     // Delete the second node
-    deleteNode(4, head , tail);
-    print(head);
+    // deleteNode(4, head , tail);
+    // print(head);
 
-    cout<< "Head " << head->data <<endl; 
-    cout<< "Tail " << tail->data <<endl; 
+    // cout<< "Head " << head->data <<endl; 
+    // cout<< "Tail " << tail->data <<endl; 
+
+    //to find the middle element in an LL
+    Node* middle = middleElement(head);
+    cout<< "Middle Element " <<middle->data<<endl;
+
 
     return 0;
 }
